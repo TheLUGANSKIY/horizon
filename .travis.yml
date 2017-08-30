@@ -8,13 +8,13 @@ install:
   - gb vendor restore -jobs 8
 before_script:
 - psql -c 'create database "horizon_test";' -U postgres
-- psql -c 'create database "stellar-core_test";' -U postgres
+- psql -c 'create database "TheLUGANSKIY-core_test";' -U postgres
 script:
 - bash scripts/run_tests.bash
 env:
   global:
   - DATABASE_URL=postgres://localhost:5432/horizon_test?sslmode=disable&user=postgres
-  - STELLAR_CORE_DATABASE_URL=postgres://localhost:5432/stellar-core_test?sslmode=disable&user=postgres
+  - STELLAR_CORE_DATABASE_URL=postgres://localhost:5432/TheLUGANSKIY-core_test?sslmode=disable&user=postgres
 notifications:
   slack:
     secure: aZZCo+1qY0AIT4TJ0Q218XZbPzxNMPLznXI8CgWVAuI+6ipRWIWykaeB0H6EInejXuT8Cjx3OKxk6RCNPLiBr10TgDnEOPR2ycPXGHSjwE+omte8/Uq3VxfEU45Uh3AlwleMIn9/HVGgGxRGEY4GqUeA9+QPPZt2sswiVazbkx4=
@@ -34,7 +34,7 @@ deploy:
   file_glob: true
   file: "dist/*"
   on:
-    repo: stellar/horizon
+    repo: TheLUGANSKIY/horizon
     tags: true
     go: '1.8'
 cache:

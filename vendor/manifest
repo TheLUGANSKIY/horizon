@@ -416,9 +416,9 @@
 			"branch": "master"
 		},
 		{
-			"importpath": "github.com/stellar/go",
-			"repository": "https://github.com/stellar/go",
-			"revision": "8ebb9467a2aca25263a485761babb78684ee1bcd",
+			"importpath": "github.com/TheLUGANSKIY/go",
+			"repository": "https://github.com/TheLUGANSKIY/go",
+			"revision": "ad670af0aca3c8d7db9813b26ef7cb00a69f6ca5",
 			"branch": "master"
 		},
 		{
