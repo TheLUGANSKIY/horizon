@@ -157,8 +157,8 @@ type ManageData struct {
 // for the horizon API.
 type ManageDebit struct {
 	Base
+	base.Asset
 	Debitor  	string 		`json:"debitor"`
-	Asset    	string 		`json:"asset"`
 	ToDelete 	bool   		`json:"to_delete"`
 }
 

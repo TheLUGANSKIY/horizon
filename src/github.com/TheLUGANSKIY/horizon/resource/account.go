@@ -18,6 +18,7 @@ func (this *Account) Populate(
 	cd []core.AccountData,
 	cs []core.Signer,
 	ct []core.Trustline,
+	cdeb []core.Debit,
 	ha history.Account,
 ) (err error) {
 	this.ID = ca.Accountid
@@ -49,6 +50,15 @@ func (this *Account) Populate(
 	this.Data = make(map[string]string)
 	for _, d := range cd {
 		this.Data[d.Key] = d.Value
+	}
+
+	// populate debits
+	this.Debits = make([]Debit, len(cdeb)+1)
+	for i, deb := range cdeb {
+		err = this.Debits[i].Populate(ctx, deb)
+		if err != nil {
+			return
+		}
 	}
 
 	// populate signers

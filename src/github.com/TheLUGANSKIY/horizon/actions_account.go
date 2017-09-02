@@ -21,6 +21,7 @@ type AccountShowAction struct {
 	CoreRecord     core.Account
 	CoreSigners    []core.Signer
 	CoreTrustlines []core.Trustline
+	CoreDebits	   []core.Debit
 	Resource       resource.Account
 }
 
@@ -78,6 +79,12 @@ func (action *AccountShowAction) loadRecord() {
 		return
 	}
 
+	action.Err = action.CoreQ().
+		DebitsByAddress(&action.CoreDebits, action.Address)
+	if action.Err != nil {
+		return
+	}
+
 	action.Err = action.HistoryQ().
 		AccountByAddress(&action.HistoryRecord, action.Address)
 
@@ -99,6 +106,7 @@ func (action *AccountShowAction) loadResource() {
 		action.CoreData,
 		action.CoreSigners,
 		action.CoreTrustlines,
+		action.CoreDebits,
 		action.HistoryRecord,
 	)
 }

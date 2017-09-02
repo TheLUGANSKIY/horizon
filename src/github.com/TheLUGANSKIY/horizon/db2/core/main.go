@@ -126,6 +126,15 @@ type Trustline struct {
 	Flags     int32
 }
 
+// Debit is a row of data from the `debits` table from TheLUGANSKIY-core
+type Debit struct {
+	Owner     string
+	Debitor   string
+	Assettype xdr.AssetType
+	Issuer    string
+	Assetcode string
+}
+
 // AssetFromDB produces an xdr.Asset by combining the constituent type, code and
 // issuer, as often retrieved from the DB in 3 separate columns.
 func AssetFromDB(typ xdr.AssetType, code string, issuer string) (result xdr.Asset, err error) {

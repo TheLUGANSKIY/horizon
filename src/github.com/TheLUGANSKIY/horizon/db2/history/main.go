@@ -96,6 +96,8 @@ const (
 	// EffectDataUpdated occurs when an account changes a data field's value
 	EffectDataUpdated EffectType = 42 // from manage_data
 
+	// debit effects
+
 	// EffectDebitCreated occurs when an account gets a new debit field
 	EffectDebitCreated EffectType = 43 // from manage_data
 

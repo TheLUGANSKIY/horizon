@@ -46,6 +46,7 @@ type Account struct {
 	Flags                AccountFlags      `json:"flags"`
 	Balances             []Balance         `json:"balances"`
 	Signers              []Signer          `json:"signers"`
+	Debits				 []Debit		   `json:"debits"`
 	Data                 map[string]string `json:"data"`
 }
 
@@ -183,6 +184,13 @@ type Signer struct {
 	Weight    int32  `json:"weight"`
 	Key       string `json:"key"`
 	Type      string `json:"type"`
+}
+
+// Debit represents one of an account's debits.
+type Debit struct {
+	Owner   string `json:"owner"`
+	Debitor string `json:"debitor"`
+	base.Asset
 }
 
 // Trade represents a trade effect

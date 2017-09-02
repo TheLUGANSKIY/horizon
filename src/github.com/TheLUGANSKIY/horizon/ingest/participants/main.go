@@ -47,7 +47,7 @@ func ForOperation(
 	case xdr.OperationTypeManageDebit:
 		result = append(result, op.Body.MustManageDebitOp().Debitor);
 	case xdr.OperationTypeDirectDebit:
-		result = append(result, op.Body.MustDirectDebitOp().Owner);
+		result = append(result, op.Body.MustDirectDebitOp().Owner, op.Body.MustDirectDebitOp().PayWithDebit.Destination);
 	default:
 		err = fmt.Errorf("Unknown operation type: %s", op.Body.Type)
 	}

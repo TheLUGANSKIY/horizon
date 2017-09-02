@@ -18,4 +18,4 @@ docs/public
 /test.go
 /tls/*.crt
 /tls/*.key
-/tls/*.csr
+/tls/*.csr .idea/
