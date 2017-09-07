@@ -55,6 +55,17 @@ CREATE TABLE history_accounts (
 
 
 --
+-- Name: history_debits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE history_debits (
+    id bigint NOT NULL,
+    owner character varying(64),
+    details jsonb
+);
+
+
+--
 -- Name: history_effects; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
@@ -287,6 +298,13 @@ CREATE UNIQUE INDEX index_history_accounts_on_address ON history_accounts USING 
 --
 
 CREATE UNIQUE INDEX index_history_accounts_on_id ON history_accounts USING btree (id);
+
+
+--
+-- Name: index_history_debits_on_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE UNIQUE INDEX index_history_debits_on_id ON history_debits USING btree (id);
 
 
 --

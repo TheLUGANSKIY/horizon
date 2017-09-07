@@ -46,6 +46,17 @@ type Cursor struct {
 	data *LedgerBundle
 }
 
+// DebitIngestion is a helper struct to smooth the ingestion of debits.  this
+// struct will track what the correct operation to use and order to use when
+// adding debits into an ingestion.
+type DebitIngestion struct {
+	Dest        *Ingestion
+	OperationID int64
+	err         error
+	added       int
+	parent      *Ingestion
+}
+
 // EffectIngestion is a helper struct to smooth the ingestion of effects.  this
 // struct will track what the correct operation to use and order to use when
 // adding effects into an ingestion.
@@ -113,6 +124,7 @@ type Ingestion struct {
 	operation_participants   sq.InsertBuilder
 	effects                  sq.InsertBuilder
 	accounts                 sq.InsertBuilder
+	debits					 sq.InsertBuilder
 }
 
 // Session represents a single attempt at ingesting data into the history

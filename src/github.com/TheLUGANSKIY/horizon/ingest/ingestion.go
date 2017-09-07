@@ -24,7 +24,11 @@ func (ingest *Ingestion) ClearAll() error {
 // id provided.
 func (ingest *Ingestion) Clear(start int64, end int64) error {
 	clear := ingest.DB.DeleteRange
-	err := clear(start, end, "history_effects", "history_operation_id")
+	err := clear(start, end, "history_debits", "id")
+	if err != nil {
+		return err
+	}
+	err = clear(start, end, "history_effects", "history_operation_id")
 	if err != nil {
 		return err
 	}
@@ -55,6 +59,23 @@ func (ingest *Ingestion) Clear(start int64, end int64) error {
 // Close finishes the current transaction and finishes this ingestion.
 func (ingest *Ingestion) Close() error {
 	return ingest.commit()
+}
+
+// Debit adds a new row into the `history_debits` table.
+func (ingest *Ingestion) Debit(owner string, details interface{}) error {
+	djson, err := json.Marshal(details)
+	if err != nil {
+		return err
+	}
+
+	sql := ingest.debits.Values(owner, djson)
+
+	_, err = ingest.DB.Exec(sql)
+	if err != nil{
+		return err
+	}
+
+	return nil
 }
 
 // Effect adds a new row into the `history_effects` table.
@@ -272,6 +293,11 @@ func (ingest *Ingestion) createInsertBuilders() {
 
 	ingest.accounts = sq.Insert("history_accounts").Columns(
 		"address",
+	)
+
+	ingest.debits = sq.Insert("history_debits").Columns(
+		"owner",
+		"details",
 	)
 
 	ingest.transactions = sq.Insert("history_transactions").Columns(

@@ -1,8 +1,8 @@
 package horizon
 
 import (
-	"net/http"
 	"github.com/zenazn/goji/web"
+	"net/http"
 )
 
 // ServeHTTPC is a method for web.Handler

@@ -51,6 +51,28 @@ CREATE TABLE history_accounts (
 
 
 --
+-- Name: history_debits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE history_debits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+--
+-- Name: history_debits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE history_debits (
+    id bigint DEFAULT nextval('history_debits_id_seq'::regclass) NOT NULL,
+    owner character varying(64),
+    details jsonb
+);
+
+
+--
 -- Name: history_effects; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -225,6 +247,19 @@ SELECT pg_catalog.setval('history_accounts_id_seq', 1, false);
 
 
 --
+-- Data for Name: history_debits; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Name: history_debits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('history_debits_id_seq', 1, false);
+
+
+--
 -- Data for Name: history_effects; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -387,6 +422,13 @@ CREATE UNIQUE INDEX index_history_accounts_on_address ON history_accounts USING 
 --
 
 CREATE UNIQUE INDEX index_history_accounts_on_id ON history_accounts USING btree (id);
+
+
+--
+-- Name: index_history_debits_on_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_history_debits_on_id ON history_debits USING btree (id);
 
 
 --

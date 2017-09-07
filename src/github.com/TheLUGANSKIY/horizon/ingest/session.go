@@ -100,6 +100,11 @@ func (is *Session) ingestEffects() {
 		OperationID: is.Cursor.OperationID(),
 		parent:      is.Ingestion,
 	}
+	debits := &DebitIngestion{
+		Dest:        is.Ingestion,
+		OperationID: is.Cursor.OperationID(),
+		parent:      is.Ingestion,
+	}
 	source := is.Cursor.OperationSourceAccount()
 	opbody := is.Cursor.Operation().Body
 
@@ -337,6 +342,8 @@ func (is *Session) ingestEffects() {
 		}
 
 		effects.Add(source, effect, dets)
+		debits.Add(source, dets)
+
 	case xdr.OperationTypeDirectDebit:
 		op := opbody.MustDirectDebitOp()
 		dets := map[string]interface{}{

@@ -120,6 +120,21 @@ type AccountsQ struct {
 	sql    sq.SelectBuilder
 }
 
+// Debit is a row of data from the `history_debits` table
+type Debit struct {
+	ID            int64
+	Owner         string 	  `db:"owner"`
+	DetailsString null.String `db:"details"`
+}
+
+// DebitsQ is a helper struct to aid in configuring queries that loads
+// slices of debit structs.
+type DebitsQ struct {
+	Err    error
+	parent *Q
+	sql	   sq.SelectBuilder
+}
+
 // Effect is a row of data from the `history_effects` table
 type Effect struct {
 	HistoryAccountID   int64       `db:"history_account_id"`

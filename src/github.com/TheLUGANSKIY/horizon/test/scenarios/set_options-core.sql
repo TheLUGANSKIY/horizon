@@ -29,7 +29,6 @@ DROP INDEX IF EXISTS public.histfeebyseq;
 DROP INDEX IF EXISTS public.histbyseq;
 DROP INDEX IF EXISTS public.buyingissuerindex;
 DROP INDEX IF EXISTS public.accountbalances;
-DROP INDEX IF EXISTS public.debits;
 ALTER TABLE IF EXISTS ONLY public.txhistory DROP CONSTRAINT IF EXISTS txhistory_pkey;
 ALTER TABLE IF EXISTS ONLY public.txfeehistory DROP CONSTRAINT IF EXISTS txfeehistory_pkey;
 ALTER TABLE IF EXISTS ONLY public.Ftrustlines DROP CONSTRAINT IF EXISTS trustlines_pkey;
@@ -45,7 +44,6 @@ ALTER TABLE IF EXISTS ONLY public.ledgerheaders DROP CONSTRAINT IF EXISTS ledger
 ALTER TABLE IF EXISTS ONLY public.ban DROP CONSTRAINT IF EXISTS ban_pkey;
 ALTER TABLE IF EXISTS ONLY public.accounts DROP CONSTRAINT IF EXISTS accounts_pkey;
 ALTER TABLE IF EXISTS ONLY public.accountdata DROP CONSTRAINT IF EXISTS accountdata_pkey;
-ALTER TABLE IF EXISTS ONLY public.debits DROP CONSTRAINT IF EXISTS debits_pkey;
 DROP TABLE IF EXISTS public.txhistory;
 DROP TABLE IF EXISTS public.txfeehistory;
 DROP TABLE IF EXISTS public.trustlines;
@@ -61,7 +59,6 @@ DROP TABLE IF EXISTS public.ledgerheaders;
 DROP TABLE IF EXISTS public.ban;
 DROP TABLE IF EXISTS public.accounts;
 DROP TABLE IF EXISTS public.accountdata;
-DROP TABLE IF EXISTS public.debits;
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
